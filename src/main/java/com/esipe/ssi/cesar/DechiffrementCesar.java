@@ -43,7 +43,7 @@ public class DechiffrementCesar {
         return -1;
     }
 
-    public  char[] generatingCode(int x){
+   /* public  char[] generatingCode(int x){
 
         int decal = x - 1;
         int c = 0;
@@ -66,9 +66,12 @@ public class DechiffrementCesar {
 
         }
         return cesar;
-    }
+    }*/
 
-    public  String decrypt(char[] cesar){
+    public  String decrypt(int x){
+
+        char[] key = new CesarKeyGenerator().generatingCode(x);
+
         String crypted ="";
         char[] alpha = getAlphabet();
         String decryption = getToDecrypt();
@@ -77,10 +80,10 @@ public class DechiffrementCesar {
         for (int i = 0; i < decryption.length(); i++){
             System.out.println("Decryptage en cours ...");
 
-            if (getPos(decryption.charAt(i), cesar) == -1){
+            if (getPos(decryption.charAt(i), key) == -1){
                 crypted = crypted + decryption.charAt(i);
             }else{
-                crypted = crypted + alpha[getPos(decryption.charAt(i), cesar)];
+                crypted = crypted + alpha[getPos(decryption.charAt(i),key)];
             }
 
         }
@@ -96,7 +99,7 @@ public class DechiffrementCesar {
         System.out.println("Mot à decrypter : " +toDecrypt + " \nAvec un decalage de " + decalage);
 
         DechiffrementCesar dc = new DechiffrementCesar(toDecrypt.toLowerCase());
-        System.out.println("\nMessage decrypté : " + dc.decrypt(dc.generatingCode(decalage)));
+        System.out.println("\nMessage decrypté : " + dc.decrypt(decalage));
 
         //System.out.println(cc.getPos('z'));
         //System.out.println(cc.encrypt(cTest,cc.getToEncrypt()));
