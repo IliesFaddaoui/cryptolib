@@ -9,9 +9,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class VigenereService {
-    public String toEncrypt;
-    public String key;
-    public int i;
     public VigenereService(){
     }
     public String encrypt(String message, String key)
@@ -25,8 +22,8 @@ public class VigenereService {
         keyArray = decomposeString(key);
         int counter = 0;
         while(messageArray.size() != keyArray.size()){
-            keyArray.add(keyArray.get(i));
-            i++;
+            keyArray.add(keyArray.get(counter));
+            counter++;
         }
         for(int i =0; i < messageArray.size(); i++) {
             int posLetter = alpha.indexOf(messageArray.get(i));
