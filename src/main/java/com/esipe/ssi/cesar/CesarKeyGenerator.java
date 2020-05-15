@@ -4,6 +4,9 @@ public class CesarKeyGenerator {
 
     public CesarKeyGenerator() {
     }
+    /*
+    Méthode pour générer une clé de chiffrage César
+     */
 
     public  char[] generatingCode(int x){
 
