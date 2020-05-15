@@ -8,20 +8,24 @@ import java.util.List;
 
 public class CryptoServicesTests {
     @Test
-    public void testDecompose(){
-        VigenereService vigenereService = new VigenereService();
-        String motTest = "Testons";
-        List testList = vigenereService.decomposeString(motTest);
-        testList.stream().forEachOrdered(System.out::println);
-        Assert.assertEquals(1,1);
-    }
-
-    @Test
     public void testEncrypt(){
         VigenereService vigenereService = new VigenereService();
         String motTest = "testons";
         String keyTest = "key";
         String encryptedWord = vigenereService.encrypt(motTest, keyTest);
+        System.out.println("orginal msg: " + motTest);
+        System.out.println(("encrypted msg: " + encryptedWord));
         Assert.assertEquals(encryptedWord, "diqdslc");
+    }
+
+    @Test
+    public void testDecrypt(){
+        VigenereService vigenereService = new VigenereService();
+        String motTest = "diqdslc";
+        String keyTest = "key";
+        String encryptedWord = vigenereService.decrypt(motTest, keyTest);
+        System.out.println("encrypted msg: " + motTest);
+        System.out.println(("original msg: " + encryptedWord));
+        Assert.assertEquals(encryptedWord, "testons");
     }
 }
