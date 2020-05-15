@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 public class VigenereService {
     public VigenereService(){
     }
+    // Méthode pour crypter un message selon l'algorithme de Vigenere
     public String encrypt(String message, String key)
     {
 
@@ -44,6 +45,7 @@ public class VigenereService {
         System.out.println("Mot chiffré: " + encryptedMessage);
         return encryptedMessage;
     }
+    //Méthode pour décomposer un String
     public List<Character> decomposeString(String string){
         return string.chars().mapToObj(item -> (char) item).collect(Collectors.toList());
     }

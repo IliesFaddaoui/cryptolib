@@ -47,6 +47,7 @@ public class ChiffrementCesar {
     }
 
 
+    // Methode pour crypter selon un chiffrage César
 
      public  String encrypt(int x){
 
@@ -69,6 +70,7 @@ public class ChiffrementCesar {
         return crypted;
     }
 
+    //Méthode Main pour tester le cryptage
 
     public static void main(String[] args) {
         String toCrypt = "abcde";
@@ -79,8 +81,6 @@ public class ChiffrementCesar {
         ChiffrementCesar cc = new ChiffrementCesar(toCrypt.toLowerCase());
         System.out.println("\nMessage crypté : " + cc.encrypt(decalage));
 
-        //System.out.println(cc.getPos('z'));
-        //System.out.println(cc.encrypt(cTest,cc.getToEncrypt()));
-       // System.out.println(cc.generatingCode(3));
+
     }
 }

@@ -43,30 +43,7 @@ public class DechiffrementCesar {
         return -1;
     }
 
-   /* public  char[] generatingCode(int x){
-
-        int decal = x - 1;
-        int c = 0;
-        int k = 0;
-
-        char[] cesar = new char[25];
-        char[] alpha = getAlphabet();
-
-        for (int i = 0; i < cesar.length - decal;i++){
-
-            cesar[i] = alpha[decal+i];
-            c++;
-
-        }
-
-        for (int i = c ;i < cesar.length; i++) {
-
-            cesar[i] = alpha[k];
-            k++;
-
-        }
-        return cesar;
-    }*/
+    //Méthode pour decrypter un message César
 
     public  String decrypt(int x){
 
@@ -91,7 +68,7 @@ public class DechiffrementCesar {
         return crypted;
     }
 
-
+    //Méthode pour tester la méthode de décryptage
     public static void main(String[] args) {
         String toDecrypt = "erqmrxu";
         int decalage = 4;
@@ -101,8 +78,6 @@ public class DechiffrementCesar {
         DechiffrementCesar dc = new DechiffrementCesar(toDecrypt.toLowerCase());
         System.out.println("\nMessage decrypté : " + dc.decrypt(decalage));
 
-        //System.out.println(cc.getPos('z'));
-        //System.out.println(cc.encrypt(cTest,cc.getToEncrypt()));
-        // System.out.println(cc.generatingCode(3));
+
     }
 }
