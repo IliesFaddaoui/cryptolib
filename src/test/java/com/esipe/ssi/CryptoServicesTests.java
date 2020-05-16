@@ -5,6 +5,7 @@ import com.esipe.ssi.vigenere.VigenereService;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 public class CryptoServicesTests {
@@ -31,9 +32,9 @@ public class CryptoServicesTests {
     }
 
     @Test
-    public void testCrack(){
+    public void testCrack() throws IOException {
         CesarCrack cesarCrack = new CesarCrack();
-        String cracked = cesarCrack.crackCesarCrypt("uftuf");
-        Assert.assertEquals("teste",cracked);
+        String cracked = cesarCrack.crackCesarCrypt("oqvqv", "motot");
+        Assert.assertEquals("MOTOT",cracked.toUpperCase());
     }
 }
