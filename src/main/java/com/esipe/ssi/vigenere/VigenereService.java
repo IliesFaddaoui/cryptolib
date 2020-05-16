@@ -5,11 +5,22 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * All methods on Vigenere principe
+ */
 public class VigenereService {
     public VigenereService() {
     }
+
     final static List<Character> alpha = Arrays.asList('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
 
+    /**
+     * Encrypt string message using simple key
+     *
+     * @param message
+     * @param key
+     * @return
+     */
     public String encrypt(String message, String key) {
 
         List<Character> messageArray = decomposeString(message);
@@ -20,6 +31,14 @@ public class VigenereService {
                 .map(String::valueOf)
                 .collect(Collectors.joining());
     }
+
+    /**
+     * Decrypt encrypted Vigenere string Message
+     *
+     * @param message
+     * @param key
+     * @return
+     */
     public String decrypt(String message, String key) {
         List<Character> messageArray = decomposeString(message);
         List<Character> keyArray = decomposeString(key);
@@ -34,7 +53,11 @@ public class VigenereService {
         return string.chars().mapToObj(item -> (char) item).collect(Collectors.toList());
     }
 
-    private List<Character> createKeyArrayList(List<Character> keyArray, int size){
+    private String decomposeListIntoString(List<Character> list){
+        return list.stream().map(String::valueOf).collect(Collectors.joining());
+    }
+
+    private List<Character> createKeyArrayList(List<Character> keyArray, int size) {
         int counter = 0;
         while (size != keyArray.size()) {
             keyArray.add(keyArray.get(counter));
@@ -43,9 +66,9 @@ public class VigenereService {
         return keyArray;
     }
 
-    private List<Character> shiftTab(List<Character> messageArray, List<Character> keyArray){
+    private List<Character> shiftTab(List<Character> messageArray, List<Character> keyArray) {
         List<Character> encryptedMessageArray = new ArrayList<>();
-        for(int i =0; i <messageArray.size(); i++){
+        for (int i = 0; i < messageArray.size(); i++) {
             int newPos = alpha.indexOf(keyArray.get(i)) + alpha.indexOf(messageArray.get(i));
             if (newPos > 26) {
                 newPos = newPos - 26;
@@ -55,9 +78,9 @@ public class VigenereService {
         return encryptedMessageArray;
     }
 
-    private List<Character> unshiftTab(List<Character> messageArray, List<Character> keyArray){
+    private List<Character> unshiftTab(List<Character> messageArray, List<Character> keyArray) {
         List<Character> decryptedMessageArray = new ArrayList<>();
-        for(int i =0; i <messageArray.size(); i++){
+        for (int i = 0; i < messageArray.size(); i++) {
             int newPos = alpha.indexOf(messageArray.get(i)) - alpha.indexOf(keyArray.get(i));
             if (newPos < 0) {
                 newPos = newPos + 26;

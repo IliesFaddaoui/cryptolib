@@ -1,5 +1,6 @@
 package com.esipe.ssi;
 
+import com.esipe.ssi.crack.CesarCrack;
 import com.esipe.ssi.vigenere.VigenereService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,5 +28,12 @@ public class CryptoServicesTests {
         System.out.println("encrypted msg: " + motTest);
         System.out.println(("original msg: " + encryptedWord));
         Assert.assertEquals(encryptedWord, "testons");
+    }
+
+    @Test
+    public void testCrack(){
+        CesarCrack cesarCrack = new CesarCrack();
+        String cracked = cesarCrack.crackCesarCrypt("uftuf");
+        Assert.assertEquals("teste",cracked);
     }
 }
