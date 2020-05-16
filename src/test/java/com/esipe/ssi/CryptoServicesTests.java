@@ -6,9 +6,10 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.List;
+
 
 public class CryptoServicesTests {
+
     @Test
     public void testEncrypt(){
         VigenereService vigenereService = new VigenereService();

@@ -1,5 +1,7 @@
 package com.esipe.ssi.vigenere;
 
+import com.esipe.ssi.CryptUtil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,9 +13,8 @@ import java.util.stream.Collectors;
 public class VigenereService {
     public VigenereService() {
     }
-
-    final static List<Character> alpha = Arrays.asList('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
-
+    public CryptUtil cryptUtil = new CryptUtil();
+    final List<Character> alpha = cryptUtil.getAlpha();
     /**
      * Encrypt string message using simple key
      *
@@ -23,8 +24,8 @@ public class VigenereService {
      */
     public String encrypt(String message, String key) {
 
-        List<Character> messageArray = decomposeString(message);
-        List<Character> keyArray = decomposeString(key);
+        List<Character> messageArray = cryptUtil.decomposeString(message);
+        List<Character> keyArray = cryptUtil.decomposeString(key);
         keyArray = createKeyArrayList(keyArray, messageArray.size());
         List<Character> encryptedMessageList = shiftTab(messageArray, keyArray);
         return encryptedMessageList.stream()
@@ -40,21 +41,11 @@ public class VigenereService {
      * @return
      */
     public String decrypt(String message, String key) {
-        List<Character> messageArray = decomposeString(message);
-        List<Character> keyArray = decomposeString(key);
+        List<Character> messageArray = cryptUtil.decomposeString(message);
+        List<Character> keyArray = cryptUtil.decomposeString(key);
         keyArray = createKeyArrayList(keyArray, messageArray.size());
         List<Character> decryptedMessageList = unshiftTab(messageArray, keyArray);
-        return decryptedMessageList.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining());
-    }
-
-    private List<Character> decomposeString(String string) {
-        return string.chars().mapToObj(item -> (char) item).collect(Collectors.toList());
-    }
-
-    private String decomposeListIntoString(List<Character> list){
-        return list.stream().map(String::valueOf).collect(Collectors.joining());
+        return cryptUtil.decomposeListIntoString(decryptedMessageList);
     }
 
     private List<Character> createKeyArrayList(List<Character> keyArray, int size) {
